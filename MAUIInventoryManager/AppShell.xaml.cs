@@ -1,0 +1,10 @@
+﻿namespace MAUIInventoryManager
+{
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
+}
