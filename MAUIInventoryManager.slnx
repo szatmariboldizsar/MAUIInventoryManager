@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="MAUIInventoryManager/MAUIInventoryManager.csproj" />
+  <Project Path="DAL/DAL.csproj" />
+  <Project Path="MAUIInventoryManager/MAUIInventoryManager.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
 </Solution>
