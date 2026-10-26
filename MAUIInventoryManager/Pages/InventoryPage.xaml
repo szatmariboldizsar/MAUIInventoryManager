@@ -2,7 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUIInventoryManager.Pages.InventoryPage"
-             Title="InventoryPage">
+             Title="InventoryPage"
+             xmlns:viewmodels="clr-namespace:MAUIInventoryManager.ViewModels"
+             xmlns:models="clr-namespace:DAL.Models;assembly=DAL"
+             x:DataType="viewmodels:InventoryViewModel"
+             x:Name="InventoryPageRoot"
+             >
+    <Grid>
+        <Grid RowDefinitions="Auto, *" Padding="10">
+
     <VerticalStackLayout>
+                <Grid Grid.Row="1" ColumnDefinitions="2*, 1.5*, 1*, 1*" Padding="5,8">
+                    <Label Grid.Column="0" Text="Name" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Barcode" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Price" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                    <Label Grid.Column="3" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                </Grid>
+
+                <RefreshView Grid.Row="2" 
+                     IsRefreshing="{Binding IsRefreshing}" 
+                     Command="{Binding LoadProductsCommand}">
+                    <CollectionView ItemsSource="{Binding Products}"
+                            SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Product">
+                                <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*, 40" Padding="5,10">
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="ZeroQuantity">
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <Grid.Triggers>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding Quantity}" Value="0">
+                                            <Setter Property="BackgroundColor" Value="#FFCDD2" />
+                                        </DataTrigger>
+                                    </Grid.Triggers>
+
+                                    <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding Barcode}" VerticalOptions="Center" />
+                                    <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </VerticalStackLayout>
+        </Grid>
     </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

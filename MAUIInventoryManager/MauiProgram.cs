@@ -1,5 +1,9 @@
 ﻿using DAL;
 using DAL.Models;
+using DAL.Services;
+using DAL.Services.Interfaces;
+using MAUIInventoryManager.Pages;
+using MAUIInventoryManager.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -39,6 +43,10 @@ namespace MAUIInventoryManager
             string dataFilePath = Path.Combine(targetFolder, "inventory.db");
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite($"Data Source={dataFilePath}"));
 
+            builder.Services.AddScoped<IProductService, ProductService>();
+
+            builder.Services.AddTransient<InventoryPage>();
+            builder.Services.AddTransient<InventoryViewModel>();
             MauiApp app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
