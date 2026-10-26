@@ -10,13 +10,13 @@ public partial class InventoryPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         if (BindingContext is InventoryViewModel vm)
         {
-            Task.Run(() => vm.LoadProductsAsync());
+            await vm.LoadProductsAsync();
         }
     }
 }
