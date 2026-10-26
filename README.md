@@ -6,7 +6,7 @@ Ez a projekt a .NET MAUI tudásom hivatott bemutatni.
 Jelen projekt esetében lehet, hogy az Microsoft.Data.Sqlite (amely egy Microsoft által kínált egyszerű ADO.NET provider SQLite-hoz) választása is elegendőnek bizonyult volna, de végül az EF Core mellett döntöttem (amelyhez az SQLite provider Microsoft.Data.Sqlite-ra épül), mivel az álláshirdetés előnyként említi meg, és ha a későbbiekben továbbfejleszteném ezt a projektet, növelném a komplexitását, akkor EF Core segítségével könnyebben kezelhetőek a táblák közötti relációk, migrációk és egyéb komplexitások.
 
 ### Add/Edit FlyoutPage vs ContentPage:
-Egy korábbi gyakornoki állásom (illetve a szakdolgozatomban) már fejlesztettem raktárkezelő alkalmazást, amely hasonló volt ehhez.
+Egy korábbi gyakornoki állásom (illetve a szakdolgozatomban) már fejlesztettem raktárkezelő alkalmazást, amely hasonló volt ehhez.\
 <img width="528" height="193" alt="image" src="https://github.com/user-attachments/assets/0ab6a8de-b359-46ee-aae5-9ac458fa40e5" />\
 Itt egy master-detail felületen egy oldalról megjelenő menüben (erről sajnos nincs képem) módosíthatott a felhasználó a cikkek adatain.
 Itt is így kezdtem a megoldást, mivel alapvetően szebbnek és használhatóbbnak tartom, viszont mivel a feladat külön oldalt kért (gondolom a navigáció szemléltetéséért), végül eltávolítottam ezt a megoldást, és külön oldalra tettem ezt a felületet, amely a termék sorára való kattintással érhető el.
