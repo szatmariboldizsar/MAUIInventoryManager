@@ -5,6 +5,9 @@ Ez a projekt a .NET MAUI tudásom hivatott bemutatni.
 ### Entity Framework Core vs Microsoft.Data.Sqlite:
 Jelen projekt esetében lehet, hogy az Microsoft.Data.Sqlite (amely egy Microsoft által kínált egyszerű ADO.NET provider SQLite-hoz) választása is elegendőnek bizonyult volna, de végül az EF Core mellett döntöttem (amelyhez az SQLite provider Microsoft.Data.Sqlite-ra épül), mivel az álláshirdetés előnyként említi meg, és ha a későbbiekben továbbfejleszteném ezt a projektet, növelném a komplexitását, akkor EF Core segítségével könnyebben kezelhetőek a táblák közötti relációk, migrációk és egyéb komplexitások.
 
+### MVVM
+Az MVVM a számomra legismertebb architektúra .NET MAUI vagy akár WPF alkalmazásokhoz, igazából ipari sztenderd, a legtöbb alkalmazás ezt használja a Separation of Concerns (felületek - üzleti logika - adatok) eléréséhez. Személy szerint a ComminityToolkit.Mvvm könyvtárat szeretem segítségül használni, megegyszerűsíti a dolgomat, de vannak rá más módok is.
+
 ### Add/Edit FlyoutPage vs ContentPage:
 Egy korábbi gyakornoki állásom (illetve a szakdolgozatomban) már fejlesztettem raktárkezelő alkalmazást, amely hasonló volt ehhez.\
 <img width="528" height="193" alt="image" src="https://github.com/user-attachments/assets/0ab6a8de-b359-46ee-aae5-9ac458fa40e5" />\
