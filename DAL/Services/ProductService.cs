@@ -18,7 +18,7 @@ namespace DAL.Services
 
         public async Task<List<Product>> GetProductsAsync()
         {
-            return await _dbContext.Products.ToListAsync();
+            return await _dbContext.Products.AsNoTracking().ToListAsync();
         }
 
         public async Task<Product?> GetProductAsync(long productId)
