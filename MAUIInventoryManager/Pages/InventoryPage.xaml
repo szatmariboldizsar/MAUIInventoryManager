@@ -11,7 +11,7 @@
     <Grid>
         <Grid RowDefinitions="Auto, *" Padding="10">
 
-    <VerticalStackLayout>
+            <VerticalStackLayout>
                 <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="10" Margin="0,0,0,10">
                     <SearchBar Placeholder="Search by name or barcode..."
                            Text="{Binding SearchText}" />
@@ -59,6 +59,20 @@
                                     <Label Grid.Column="1" Text="{Binding Barcode}" VerticalOptions="Center" />
                                     <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
                                     <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
+
+                                    <Button Grid.Column="4"
+                                    Text="✏️"
+                                    FontSize="12"
+                                    Padding="0"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    BackgroundColor="Transparent"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Command="{Binding BindingContext.NavigateToProductDetailCommand, Source={x:Reference InventoryPageRoot}}"
+                                    CommandParameter="{Binding .}" />
+
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.SelectProductCommand, Source={x:Reference InventoryPageRoot}}"
                                                       CommandParameter="{Binding .}" />
@@ -120,7 +134,7 @@
                     <Button Text="Cancel" 
                             Command="{Binding CloseFlyoutCommand}" 
                             Style="{StaticResource OutlineButton}"/>
-    </VerticalStackLayout>
+                </VerticalStackLayout>
             </ScrollView>
         </Border>
     </Grid>

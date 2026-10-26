@@ -47,6 +47,10 @@ namespace MAUIInventoryManager
 
             builder.Services.AddTransient<InventoryPage>();
             builder.Services.AddTransient<InventoryViewModel>();
+
+            builder.Services.AddTransient<ProductDetailPage>();
+            builder.Services.AddTransient<ProductDetailViewModel>();
+
             MauiApp app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

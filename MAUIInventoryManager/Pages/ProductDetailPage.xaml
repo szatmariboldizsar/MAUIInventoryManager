@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MAUIInventoryManager.ViewModels"
+             x:Class="MAUIInventoryManager.Pages.ProductDetailPage"
+             x:DataType="viewmodels:ProductDetailViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Product Name:" FontAttributes="Bold" />
+            <Entry Text="{Binding SelectedProduct.Name}" />
+
+            <Label Text="Barcode:" FontAttributes="Bold" />
+            <Entry Text="{Binding SelectedProduct.Barcode}" />
+
+            <Label Text="Price ($):" FontAttributes="Bold" />
+            <Entry Text="{Binding SelectedProduct.Price, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
+
+            <Label Text="Quantity:" FontAttributes="Bold" />
+            <Entry Text="{Binding SelectedProduct.Quantity, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
+
+            <Button Text="Save" 
+                    Command="{Binding SaveCommand}" />
+
+            <Button Text="Delete" 
+                    Command="{Binding DeleteCommand}" 
+                    Style="{StaticResource NegativeTertiaryButton}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

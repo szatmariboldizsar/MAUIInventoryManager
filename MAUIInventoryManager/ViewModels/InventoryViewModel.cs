@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using DAL.Models;
 using DAL.Services.Interfaces;
+using MAUIInventoryManager.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -128,6 +129,20 @@ namespace MAUIInventoryManager.ViewModels
 
             IsFlyoutOpen = false;
             await LoadProductsAsync();
+        }
+
+        [RelayCommand]
+        async Task NavigateToProductDetailAsync(Product product)
+        {
+            if (product == null) return;
+
+            // Pass the selected product object to the detail page via shell parameters
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "Product", product }
+            };
+
+            await Shell.Current.GoToAsync(nameof(ProductDetailPage), navigationParameter);
         }
 
         [RelayCommand]
