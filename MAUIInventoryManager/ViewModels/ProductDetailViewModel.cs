@@ -8,7 +8,8 @@ using System.Text;
 
 namespace MAUIInventoryManager.ViewModels
 {
-    public partial class ProductDetailViewModel : ObservableObject, IQueryAttributable
+    [QueryProperty(nameof(Product), "Product")]
+    public partial class ProductDetailViewModel : ObservableObject
     {
         private readonly IProductService _productService;
 
@@ -21,25 +22,14 @@ namespace MAUIInventoryManager.ViewModels
         public ProductDetailViewModel(IProductService productService)
         {
             _productService = productService;
-            // Initialize with a blank product for "Add New" scenario
             Product = new Product();
         }
 
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        partial void OnProductChanged(Product value)
         {
-            if (query.TryGetValue("Product", out var obj) && obj is Product incomingProduct)
+            if (value != null)
             {
                 Title = "Edit Product";
-
-                // Safe, single-time cloning to protect the list item from live-editing
-                Product = new Product
-                {
-                    Id = incomingProduct.Id,
-                    Name = incomingProduct.Name,
-                    Barcode = incomingProduct.Barcode,
-                    Price = incomingProduct.Price,
-                    Quantity = incomingProduct.Quantity
-                };
             }
         }
 
@@ -60,7 +50,7 @@ namespace MAUIInventoryManager.ViewModels
             {
                 await _productService.UpdateProductAsync(Product);
             }
-            await Shell.Current.GoToAsync(".."); // Navigate back to list
+            await Shell.Current.GoToAsync("..");
         }
 
         [RelayCommand]

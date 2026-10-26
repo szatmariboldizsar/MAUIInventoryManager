@@ -10,16 +10,16 @@
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <Label Text="Product Name:" FontAttributes="Bold" />
-            <Entry Text="{Binding SelectedProduct.Name}" />
+            <Entry Text="{Binding Product.Name}" />
 
             <Label Text="Barcode:" FontAttributes="Bold" />
-            <Entry Text="{Binding SelectedProduct.Barcode}" />
+            <Entry Text="{Binding Product.Barcode}" />
 
             <Label Text="Price ($):" FontAttributes="Bold" />
-            <Entry Text="{Binding SelectedProduct.Price, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
+            <Entry Text="{Binding Product.Price, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
 
             <Label Text="Quantity:" FontAttributes="Bold" />
-            <Entry Text="{Binding SelectedProduct.Quantity, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
+            <Entry Text="{Binding Product.Quantity, StringFormat='{0:0.##}'}" Keyboard="Numeric" />
 
             <Button Text="Save" 
                     Command="{Binding SaveCommand}" />
