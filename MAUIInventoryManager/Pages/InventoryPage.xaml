@@ -9,58 +9,45 @@
              x:Name="InventoryPageRoot"
              >
     <Grid>
-        <Grid RowDefinitions="Auto, *" Padding="10">
+        <Grid RowDefinitions="Auto, Auto, *" Padding="10" >
 
-            <VerticalStackLayout>
-                <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="10" Margin="0,0,0,10">
-                    <SearchBar Placeholder="Search by name or barcode..."
+            <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="10" Margin="0,0,0,10">
+                <SearchBar Placeholder="Search by name or barcode..."
                            Text="{Binding SearchText}" />
-                    <Button Grid.Column="1" 
+                <Button Grid.Column="1" 
                         Text="+ Add Product" 
                         Command="{Binding AddNewProductCommand}" />
-                </Grid>
+            </Grid>
 
 
-                <Grid Grid.Row="1" ColumnDefinitions="2*, 1.5*, 1*, 1*" Padding="5,8">
-                    <Label Grid.Column="0" Text="Name" FontAttributes="Bold" />
-                    <Label Grid.Column="1" Text="Barcode" FontAttributes="Bold" />
-                    <Label Grid.Column="2" Text="Price" FontAttributes="Bold" HorizontalTextAlignment="End" />
-                    <Label Grid.Column="3" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="End" />
-                </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="2*, 1.5*, 1*, 1*" Padding="5,0" >
+                <Label Grid.Column="0" Text="Name" FontAttributes="Bold" />
+                <Label Grid.Column="1" Text="Barcode" FontAttributes="Bold" />
+                <Label Grid.Column="2" Text="Price" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                <Label Grid.Column="3" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="End" />
+            </Grid>
 
-                <RefreshView Grid.Row="2" 
+            <RefreshView Grid.Row="2" 
                      IsRefreshing="{Binding IsRefreshing}" 
                      Command="{Binding LoadProductsCommand}">
-                    <CollectionView ItemsSource="{Binding Products}"
+                <CollectionView ItemsSource="{Binding Products}"
                             SelectionMode="None">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Product">
-                                <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*, 40" Padding="5,10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Product">
+                            <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*, 40" Padding="5,10">
 
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal">
-                                                <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="Transparent" />
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                            <VisualState x:Name="ZeroQuantity">
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
+                                <Grid.Triggers>
+                                    <DataTrigger TargetType="Grid" Binding="{Binding Quantity}" Value="0">
+                                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#FFCDD2, Dark=#450000}" />
+                                    </DataTrigger>
+                                </Grid.Triggers>
 
-                                    <Grid.Triggers>
-                                        <DataTrigger TargetType="Grid" Binding="{Binding Quantity}" Value="0">
-                                            <Setter Property="BackgroundColor" Value="#FFCDD2" />
-                                        </DataTrigger>
-                                    </Grid.Triggers>
+                                <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding Barcode}" VerticalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                                <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
 
-                                    <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" />
-                                    <Label Grid.Column="1" Text="{Binding Barcode}" VerticalOptions="Center" />
-                                    <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
-                                    <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
-
-                                    <Button Grid.Column="4"
+                                <Button Grid.Column="4"
                                     Text="✏️"
                                     FontSize="12"
                                     Padding="0"
@@ -73,16 +60,15 @@
                                     Command="{Binding BindingContext.NavigateToProductDetailCommand, Source={x:Reference InventoryPageRoot}}"
                                     CommandParameter="{Binding .}" />
 
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectProductCommand, Source={x:Reference InventoryPageRoot}}"
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectProductCommand, Source={x:Reference InventoryPageRoot}}"
                                                       CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </RefreshView>
-            </VerticalStackLayout>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </Grid>
 
         <BoxView BackgroundColor="#80000000"
