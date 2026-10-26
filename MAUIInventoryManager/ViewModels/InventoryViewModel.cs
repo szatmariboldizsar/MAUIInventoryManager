@@ -21,8 +21,13 @@ namespace MAUIInventoryManager.ViewModels
 
         [ObservableProperty]
         public partial ObservableCollection<Product> Products { get; set; }
+
+        [ObservableProperty]
+        public partial string SearchText { get; set; }
+
         [ObservableProperty]
         public partial bool IsRefreshing { get; set; }
+
         [ObservableProperty]
         public partial Product? SelectedProduct { get; set; }
 
@@ -39,6 +44,11 @@ namespace MAUIInventoryManager.ViewModels
             {
                 IsRefreshing = false;
             }
+        }
+
+        partial void OnSearchTextChanged(string value)
+        {
+            FilterProducts();
         }
 
         private void FilterProducts()

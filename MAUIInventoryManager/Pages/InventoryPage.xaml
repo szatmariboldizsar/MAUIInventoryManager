@@ -12,6 +12,12 @@
         <Grid RowDefinitions="Auto, *" Padding="10">
 
     <VerticalStackLayout>
+                <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="10" Margin="0,0,0,10">
+                    <SearchBar Placeholder="Search by name or barcode..."
+                           Text="{Binding SearchText}" />
+                </Grid>
+
+
                 <Grid Grid.Row="1" ColumnDefinitions="2*, 1.5*, 1*, 1*" Padding="5,8">
                     <Label Grid.Column="0" Text="Name" FontAttributes="Bold" />
                     <Label Grid.Column="1" Text="Barcode" FontAttributes="Bold" />
