@@ -7,7 +7,7 @@ Jelen projekt esetében lehet, hogy az Microsoft.Data.Sqlite (amely egy Microsof
 
 ### Add/Edit FlyoutPage vs ContentPage:
 Egy korábbi gyakornoki állásom (illetve a szakdolgozatomban) már fejlesztettem raktárkezelő alkalmazást, amely hasonló volt ehhez.
-<img width="528" height="193" alt="image" src="https://github.com/user-attachments/assets/0ab6a8de-b359-46ee-aae5-9ac458fa40e5" />
+<img width="528" height="193" alt="image" src="https://github.com/user-attachments/assets/0ab6a8de-b359-46ee-aae5-9ac458fa40e5" />\
 Itt egy master-detail felületen egy oldalról megjelenő menüben (erről sajnos nincs képem) módosíthatott a felhasználó a cikkek adatain.
 Itt is így kezdtem a megoldást, mivel alapvetően szebbnek és használhatóbbnak tartom, viszont mivel a feladat külön oldalt kért (gondolom a navigáció szemléltetéséért), végül eltávolítottam ezt a megoldást, és külön oldalra tettem ezt a felületet, amely a termék sorára való kattintással érhető el.
 <img width="1220" height="647" alt="image" src="https://github.com/user-attachments/assets/3cd42770-362c-41cf-8248-498320649882" />
@@ -15,20 +15,20 @@ Itt is így kezdtem a megoldást, mivel alapvetően szebbnek és használhatóbb
 
 ### Adatfájl elhelyezése:
 A .NET MAUI által kínált FileSystem.Current.AppDataDirectory-t szerettem volna használni mindenhol, ám ez Windows alatt AppData/Local/{publisherName}/{packageName}/{productName}/Data, amit különböző packaging opciókkal talán módosítható lett volna, viszont ezt kívül éreztem a projekt scope-jából, úgyhogy az egyszerűség kedvéért Windows alatt külön kezeltem az adatfájlt helyét
-'''
+```
 string appDataPath = FileSystem.Current.AppDataDirectory;
 
 #if WINDOWS
     appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 #endif
-'''
-Illetve (ez már pláne nem tartozik a scopejába a projektnek, de közben fedeztem fel ezért leírom) nem értettem pontosan, miért a Localra mutat .NET 10 alatt, mert egy korábbi issue és pull request szerint ennek már a Roaming alá kéne mutatnia Local helyett egy .NET 8-as fix óta.
-[https://github.com/dotnet/maui/issues/25981](https://github.com/dotnet/maui/issues/25981)
-[https://github.com/dotnet/maui/pull/26039](https://github.com/dotnet/maui/pull/26039)
+```
+Illetve (ez már pláne nem tartozik a scopejába a projektnek, de közben fedeztem fel ezért leírom) nem értettem pontosan, miért a Localra mutat .NET 10 alatt, mert egy korábbi issue és pull request szerint ennek már a Roaming alá kéne mutatnia Local helyett egy .NET 8-as fix óta.\
+[https://github.com/dotnet/maui/issues/25981](https://github.com/dotnet/maui/issues/25981)\
+[https://github.com/dotnet/maui/pull/26039](https://github.com/dotnet/maui/pull/26039)\
 Valószínűleg megtalálnám az okát, ha még fordítanék rá időt, de egyelőre nem találtam meg.
 
 ## Amiken még fejlesztenék, ha több idő állna rendelkezésre:
-Viszonylag elégedett vagyok a megoldásommal, a felület lehetne szebb és jobban elrendezett, ha több időt fordítanék rá. A feladat követelményeit teljesíti.
+Viszonylag elégedett vagyok a megoldásommal, a felület lehetne szebb és jobban elrendezett, valamint mobileszközökre optimalizált, ha több időt fordítanék rá. A feladat követelményeit teljesíti.
 
 ## Milyen további fejlesztéseket tennék bele:
 ### Valuta választás
