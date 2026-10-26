@@ -8,8 +8,7 @@
              x:DataType="viewmodels:InventoryViewModel"
              x:Name="InventoryPageRoot"
              >
-    <Grid>
-        <Grid RowDefinitions="Auto, Auto, *" Padding="10" >
+    <Grid RowDefinitions="Auto, Auto, *" Padding="10" >
 
             <Grid Grid.Row="0" ColumnDefinitions="*, Auto" ColumnSpacing="10" Margin="0,0,0,10">
                 <SearchBar Placeholder="Search by name or barcode..."
@@ -34,7 +33,7 @@
                             SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Product">
-                            <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*, 40" Padding="5,10">
+                            <Grid ColumnDefinitions="2*, 1.5*, 1*, 1*" Padding="5,10">
 
                                 <Grid.Triggers>
                                     <DataTrigger TargetType="Grid" Binding="{Binding Quantity}" Value="0">
@@ -45,22 +44,9 @@
                                 <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" />
                                 <Label Grid.Column="1" Text="{Binding Barcode}" VerticalOptions="Center" />
                                 <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
-                                <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
+                            <Label Grid.Column="3" Text="{Binding Quantity, StringFormat='{0:0.##}'}" VerticalOptions="Center" HorizontalTextAlignment="End" />
 
-                                <Button Grid.Column="4"
-                                    Text="✏️"
-                                    FontSize="12"
-                                    Padding="0"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    BackgroundColor="Transparent"
-                                    TextColor="Black"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center"
-                                    Command="{Binding BindingContext.NavigateToProductDetailCommand, Source={x:Reference InventoryPageRoot}}"
-                                    CommandParameter="{Binding .}" />
-
-                                <Grid.GestureRecognizers>
+                            <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.SelectProductCommand, Source={x:Reference InventoryPageRoot}}"
                                                       CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
@@ -70,58 +56,4 @@
                 </CollectionView>
             </RefreshView>
         </Grid>
-
-        <BoxView BackgroundColor="#80000000"
-                 IsVisible="{Binding IsFlyoutOpen}">
-            <BoxView.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CloseFlyoutCommand}" />
-            </BoxView.GestureRecognizers>
-        </BoxView>
-
-        <Border HorizontalOptions="End" 
-                VerticalOptions="Fill" 
-                WidthRequest="350"
-                BackgroundColor="{AppThemeBinding Light=White, Dark=#212121}"
-                Padding="20"
-                IsVisible="{Binding IsFlyoutOpen}">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="16,0,0,16" />
-            </Border.StrokeShape>
-
-            <ScrollView>
-                <VerticalStackLayout Spacing="12">
-
-                    <Grid ColumnDefinitions="*, Auto">
-                        <Label Text="{Binding FlyoutTitle}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
-                        <Button Grid.Column="1" Text="✕" Command="{Binding CloseFlyoutCommand}" BackgroundColor="Transparent" TextColor="Gray" FontSize="18" />
-                    </Grid>
-
-                    <BoxView HeightRequest="1" Color="LightGray" Margin="0,5" />
-
-                    <Label Text="Product Name:" FontAttributes="Bold" />
-                    <Entry Text="{Binding SelectedProduct.Name}" />
-
-                    <Label Text="Barcode:" FontAttributes="Bold" />
-                    <Entry Text="{Binding SelectedProduct.Barcode}" />
-
-                    <Label Text="Price ($):" FontAttributes="Bold" />
-                    <Entry Text="{Binding SelectedProduct.Price}" Keyboard="Numeric" />
-
-                    <Label Text="Quantity (pcs):" FontAttributes="Bold" />
-                    <Entry Text="{Binding SelectedProduct.Quantity}" Keyboard="Numeric" />
-
-                    <Button Text="Save" 
-                            Command="{Binding SaveProductCommand}" />
-
-                    <Button Text="Delete" 
-                            Command="{Binding DeleteProductCommand}" 
-                            Style="{StaticResource NegativeTertiaryButton}" />
-
-                    <Button Text="Cancel" 
-                            Command="{Binding CloseFlyoutCommand}" 
-                            Style="{StaticResource OutlineButton}"/>
-                </VerticalStackLayout>
-            </ScrollView>
-        </Border>
-    </Grid>
 </ContentPage>
