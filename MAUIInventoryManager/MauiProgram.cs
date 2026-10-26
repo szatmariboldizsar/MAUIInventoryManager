@@ -61,7 +61,7 @@ namespace MAUIInventoryManager
                         new Product { Name = "Tej 2.8% 1l", Barcode = "5991234567890", Price = 450, Quantity = 50 },
                         new Product { Name = "Kenyér (Félbarna)", Barcode = "5991234567891", Price = 680, Quantity = 25 },
                         new Product { Name = "Sajt (Trappista)", Barcode = "5991234567892", Price = 2490, Quantity = 15 },
-                        new Product { Name = "Tojás (M-es, 10db)", Barcode = "5991234567893", Price = 890, Quantity = 40 },
+                        new Product { Name = "Tojás (M-es, 10db)", Barcode = "5991234567893", Price = 890, Quantity = 0 },
                         new Product { Name = "Csirkemell filé (kg)", Barcode = "5991234567894", Price = 2190, Quantity = 30 },
                         new Product { Name = "Kávé (Omnia 250g)", Barcode = "5991234567895", Price = 1750, Quantity = 20 },
                         new Product { Name = "Ásványvíz (Szentkirályi 1.5l)", Barcode = "5991234567896", Price = 220, Quantity = 100 },
