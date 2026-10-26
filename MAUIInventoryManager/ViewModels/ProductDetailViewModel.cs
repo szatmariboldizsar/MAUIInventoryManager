@@ -27,7 +27,7 @@ namespace MAUIInventoryManager.ViewModels
 
         partial void OnProductChanged(Product value)
         {
-            if (value != null)
+            if (value.Id != 0)
             {
                 Title = "Edit Product";
             }

@@ -43,7 +43,7 @@ namespace MAUIInventoryManager
             string dataFilePath = Path.Combine(targetFolder, "inventory.db");
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite($"Data Source={dataFilePath}"));
 
-            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddTransient<IProductService, ProductService>();
 
             builder.Services.AddTransient<InventoryPage>();
             builder.Services.AddTransient<InventoryViewModel>();

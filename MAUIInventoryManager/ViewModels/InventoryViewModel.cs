@@ -136,7 +136,6 @@ namespace MAUIInventoryManager.ViewModels
         {
             if (product == null) return;
 
-            // Pass the selected product object to the detail page via shell parameters
             var navigationParameter = new Dictionary<string, object>
             {
                 { "Product", product }
